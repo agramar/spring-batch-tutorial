@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,8 +21,8 @@ public class SimpleJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job simpleJobJob() {
-        return jobBuilderFactory.get("simpleJob")
+    public Job simpleJob1() {
+        return jobBuilderFactory.get("simpleJob1")
                 .start(simpleStep1())
                 .build();
     }
@@ -30,6 +32,25 @@ public class SimpleJobConfiguration {
         return stepBuilderFactory.get("simpleStep1")
                 .tasklet((contribution, chunkContext) -> {
                     log.info("This is step1");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
+    }
+
+    @Bean
+    public Job simpleJob2() {
+        return jobBuilderFactory.get("simpleJob2")
+                .start(simpleStep2(null))
+                .build();
+    }
+
+    @Bean
+    @JobScope
+    public Step simpleStep2(@Value("#{jobParameters[requestDate]}") String requestDate) {
+        return stepBuilderFactory.get("simpleStep2")
+                .tasklet((contribution, chunkContext) -> {
+                    log.info("This is Step2");
+                    log.info("requestDate : {}", requestDate);
                     return RepeatStatus.FINISHED;
                 })
                 .build();
