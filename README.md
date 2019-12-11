@@ -1,5 +1,16 @@
 # spring-batch-tutorial
 
+## Arguments
+### VM Arguments
+```
+-Dspring.profiles.active=mysql
+```
+
+### Program Arguments
+```
+version=1 --job.name=stepNextConditionalJob
+```
+
 ## DB Schema
 
 ### BATCH_JOB_INSTANCE
