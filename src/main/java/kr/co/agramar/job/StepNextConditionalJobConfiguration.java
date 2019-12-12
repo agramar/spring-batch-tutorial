@@ -21,7 +21,13 @@ public class StepNextConditionalJobConfiguration {
 
     @Bean
     public Job stepNextConditionalJob() {
-        return jobBuilderFactory.get("stepNextConditionalJob")
+        /*
+         * BatchStatus
+         * ExitStatus
+         * RepeatStatus
+         */
+        return jobBuilderFactory
+                .get("stepNextConditionalJob")
                 .start(conditionalJobStep1())
                 .on(ExitStatus.FAILED.getExitCode())        // FAILED 일 경우
                 .to(conditionalJobStep3())                  // step3으로 이동한다.
@@ -33,22 +39,15 @@ public class StepNextConditionalJobConfiguration {
                 .next(conditionalJobStep3())                // step2가 정상 종료되면 step3으로 이동한다.
                 .on("*")                            // step3의 결과 관계 없이
                 .end()                                      // step3으로 이동하면 Flow가 종료한다.
-                .end()                                      // Job 종료
+                .end()                                      // JobBuilder 종료
                 .build();
     }
 
     @Bean
     public Step conditionalJobStep1() {
-        return stepBuilderFactory.get("step1")
+        return stepBuilderFactory.get("conditionalJobStep1")
                 .tasklet((contribution, chunkContext) -> {
-                    log.info(">>>>> This is stepNextConditionalJob Step1");
-
-                    /*
-                     ExitStatus를 FAILED로 지정한다.
-                     해당 status를 보고 flow가 진행된다.
-                     */
-                    // contribution.setExitStatus(ExitStatus.FAILED);
-
+                    contribution.setExitStatus(ExitStatus.FAILED);   // ExitStatus를 FAILED로 지정한다. 해당 status를 보고 flow가 진행된다.
                     return RepeatStatus.FINISHED;
                 })
                 .build();
@@ -57,20 +56,14 @@ public class StepNextConditionalJobConfiguration {
     @Bean
     public Step conditionalJobStep2() {
         return stepBuilderFactory.get("conditionalJobStep2")
-                .tasklet((contribution, chunkContext) -> {
-                    log.info(">>>>> This is stepNextConditionalJob Step2");
-                    return RepeatStatus.FINISHED;
-                })
+                .tasklet((contribution, chunkContext) -> RepeatStatus.FINISHED)
                 .build();
     }
 
     @Bean
     public Step conditionalJobStep3() {
         return stepBuilderFactory.get("conditionalJobStep3")
-                .tasklet((contribution, chunkContext) -> {
-                    log.info(">>>>> This is stepNextConditionalJob Step3");
-                    return RepeatStatus.FINISHED;
-                })
+                .tasklet((contribution, chunkContext) -> RepeatStatus.FINISHED)
                 .build();
     }
 
