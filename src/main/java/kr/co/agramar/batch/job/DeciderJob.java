@@ -1,4 +1,4 @@
-package kr.co.agramar.job;
+package kr.co.agramar.batch.job;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import java.util.Random;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class DeciderJobConfiguration {
+public class DeciderJob {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
