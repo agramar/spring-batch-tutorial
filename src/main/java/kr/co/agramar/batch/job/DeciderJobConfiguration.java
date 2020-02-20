@@ -19,7 +19,7 @@ import java.util.Random;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class DeciderJob {
+public class DeciderJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;

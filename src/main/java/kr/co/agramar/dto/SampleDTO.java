@@ -1,4 +1,10 @@
 package kr.co.agramar.dto;
 
-public enum SampleDTO {
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class SampleDTO {
+    private String desc;
 }
