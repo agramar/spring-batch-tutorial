@@ -8,7 +8,7 @@
 
 ### Program Arguments
 ```
-version=2 job.name=stepNextConditionalJob requestDate=20200201
+version=3 job.name=stepNextConditionalJob requestDate=20200201
 ```
 
 ## 1. Main Concept

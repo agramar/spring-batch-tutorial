@@ -1,14 +1,77 @@
+sever:
+  port: 8080
+  tomcat:
+      additional-tld-skip-patterns: '*.jar'
 spring:
-  profiles:
-    active: local
+  output:
+    ansi:
+      enabled: always
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      generate-ddl: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
-      hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
-      hibernate.hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
-      hibernate.default_batch_fetch_size: ${chunkSize:1000}
+      hibernate:
+        enable_lazy_load_no_trans: true
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        default_batch_fetch_size: ${chunkSize:1000}
     open-in-view: false
-spring.batch.job.names: ${job.name:NONE}
-logging.level.org.springframework.batch: DEBUG
+  main:
+    allow-bean-definition-overriding: true
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+---
+spring:
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: ENC(6SeDQl25tkd85e14+iuf+mVhSJ0NtALxVavcqjuX2NgsFE4pu21gjF5rglZlhJgT1KfnbSuYJM0V3n84/FOohceJzgJ5mtIOa0ph0z9CfZLFz6A8LuMZGQ==)
+      username: ENC(MaKsjiW/3TbTFvljwvvNP139YzDepOoh)
+      password: ENC(xTCMmaR+pCnwe24xFv/LhfQBWdfU9R92)
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      minimum-idle: 1
+      maximum-pool-size: 10
+      idle-timeout: 10000
+      connection-timeout: 20000
+      max-lifetime: 2000000
+#    master:
+#      jdbc-url: ENC(6SeDQl25tkd85e14+iuf+mVhSJ0NtALxVavcqjuX2NgsFE4pu21gjF5rglZlhJgT1KfnbSuYJM0V3n84/FOohceJzgJ5mtIOa0ph0z9CfZLFz6A8LuMZGQ==)
+#      username: ENC(MaKsjiW/3TbTFvljwvvNP139YzDepOoh)
+#      password: ENC(xTCMmaR+pCnwe24xFv/LhfQBWdfU9R92)
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      minimum-idle: 1
+#      maximum-pool-size: 10
+#      idle-timeout: 10000
+#      connection-timeout: 20000
+#      max-lifetime: 2000000
+#    slave:
+#      jdbc-url: ENC(aomN5aZJH+8kegUUEUgqDxTSI5e4eUhbCYpmUJY3lDxOGieQgvJtjpukH/xWgk9nQYhF0jBPi1iddx6rbjR8K/XYju3g+2p76INcGsyCRqNySVwP+pdvlA==)
+#      username: ENC(Z4NFn1jYF1QpstbsQt90/X6eeWPsJs96)
+#      password: ENC(pWWCGpYxbQkVmEgjWllZEzt/4UlUdpUX)
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      minimum-idle: 1
+#      maximum-pool-size: 10
+#      idle-timeout: 10000
+#      connection-timeout: 20000
+#      max-lifetime: 2000000
+logging:
+  level:
+    org.springframework.batch: DEBUG
+---
+spring:
+  profiles: local-h2
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
