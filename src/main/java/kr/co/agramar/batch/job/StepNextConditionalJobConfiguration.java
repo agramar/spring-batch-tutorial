@@ -19,7 +19,7 @@ public class StepNextConditionalJobConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+//    @Bean
     public Job stepNextConditionalJob1() {
         /*
          * BatchStatus

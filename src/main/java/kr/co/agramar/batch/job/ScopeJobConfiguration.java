@@ -22,7 +22,7 @@ public class ScopeJobConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+//    @Bean
     public Job scopeJob() {
         return jobBuilderFactory.get("scopeJob")
                 .start(scopeStep1(null))

@@ -20,7 +20,7 @@ public class SimpleJobConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+//    @Bean
     public Job simpleJob() {
         return jobBuilderFactory.get("simpleJob")
                 .start(simpleStep1())
@@ -37,7 +37,7 @@ public class SimpleJobConfiguration {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public Job simpleJob2() {
         return jobBuilderFactory.get("simpleJob2")
                 .start(simpleStep2(null))
