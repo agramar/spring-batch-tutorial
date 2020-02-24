@@ -28,6 +28,12 @@ jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
+mybatis:
+  type-aliases-package: kr.co.agramar.model
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
 ---
 spring:
   profiles:
@@ -37,6 +43,8 @@ spring:
       jdbc-url: ENC(6SeDQl25tkd85e14+iuf+mVhSJ0NtALxVavcqjuX2NgsFE4pu21gjF5rglZlhJgT1KfnbSuYJM0V3n84/FOohceJzgJ5mtIOa0ph0z9CfZLFz6A8LuMZGQ==)
       username: ENC(MaKsjiW/3TbTFvljwvvNP139YzDepOoh)
       password: ENC(xTCMmaR+pCnwe24xFv/LhfQBWdfU9R92)
+      poolName: HikariPool-Master
+      readOnly: false
       driver-class-name: com.mysql.cj.jdbc.Driver
       minimum-idle: 1
       maximum-pool-size: 10
@@ -47,16 +55,18 @@ spring:
       jdbc-url: ENC(aomN5aZJH+8kegUUEUgqDxTSI5e4eUhbCYpmUJY3lDxOGieQgvJtjpukH/xWgk9nQYhF0jBPi1iddx6rbjR8K/XYju3g+2p76INcGsyCRqNySVwP+pdvlA==)
       username: ENC(Z4NFn1jYF1QpstbsQt90/X6eeWPsJs96)
       password: ENC(pWWCGpYxbQkVmEgjWllZEzt/4UlUdpUX)
+      poolName: HikariPool-Slave
+      readOnly: true
       driver-class-name: com.mysql.cj.jdbc.Driver
       minimum-idle: 1
-      maximum-pool-size: 10
+      maximum-pool-size: 5
       idle-timeout: 10000
       connection-timeout: 20000
       max-lifetime: 2000000
 logging:
   level:
     org.springframework.batch: DEBUG
-    org.springframework.jdbc.datasource.SimpleDriverDataSource: DEBUG
+    com.zaxxer: DEBUG
 ---
 spring:
   profiles: local-h2

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class CityRepositoryTest {
     @Autowired
     private CityRepository cityRepository;
 
+    @Transactional(readOnly = true)
     @Test
     public void test_slave() {
         List<City> cityList = cityRepository.findAll();
@@ -29,6 +31,17 @@ public class CityRepositoryTest {
 
     @Test
     public void test_master() {
+        cityRepository.save(City.builder()
+                .countryCode("KOR")
+                .name("Mujin")
+                .district("Chollabuk")
+                .population(95472L)
+                .build());
+    }
+
+    @Test(expected = JpaSystemException.class)
+    @Transactional(readOnly = true)
+    public void test_master_exception() {
         cityRepository.save(City.builder()
                 .countryCode("KOR")
                 .name("Mujin")

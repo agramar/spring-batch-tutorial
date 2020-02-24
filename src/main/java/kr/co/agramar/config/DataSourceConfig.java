@@ -1,15 +1,13 @@
 package kr.co.agramar.config;
 
-import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
@@ -20,12 +18,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Slf4j
-@Lazy
 @Configuration
-@EnableEncryptableProperties
-@EnableConfigurationProperties
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "kr.co.agramar.repository")
+@MapperScan(basePackages = "kr.co.agramar.mapper")
 public class DataSourceConfig {
 
     @Bean(name = "masterDataSource")

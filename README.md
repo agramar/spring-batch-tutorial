@@ -1,5 +1,14 @@
 # spring-batch-tutorial
 
+## Cofiguration
+- spring-batch
+- quartsz : mySql jobstore
+- jasypt
+- Replication datasource
+- MyBatis
+- JPA
+- 
+
 ## 0. Arguments
 ### VM Arguments
 ```

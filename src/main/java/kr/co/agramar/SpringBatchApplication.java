@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +19,8 @@ import java.util.TimeZone;
 @Slf4j
 @EnableScheduling
 @EnableBatchProcessing
+@EnableEncryptableProperties
+@EnableConfigurationProperties
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class SpringBatchApplication {
 
