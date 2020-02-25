@@ -22,14 +22,15 @@ public class CityRepositoryTest {
     @Autowired
     private CityRepository cityRepository;
 
-    @Transactional(readOnly = true)
     @Test
+    @Transactional(readOnly = true)
     public void test_slave() {
         List<City> cityList = cityRepository.findAll();
         log.info("cityList : {}", cityList);
     }
 
     @Test
+    @Transactional
     public void test_master() {
         cityRepository.save(City.builder()
                 .countryCode("KOR")

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.agramar.mapper.CityMapper">
+
+    <select id="findAll" resultType="City">
+        SELECT
+            *
+        FROM
+            world.city
+    </select>
+    
+    <insert id="save" parameterType="City" useGeneratedKeys="true"  keyProperty="id">
+        INSERT INTO
+            world.city (
+                Name,
+                CountryCode,
+                District,
+                Population
+            )
+        VALUES (
+                #{name},
+                #{countryCode},
+                #{district},
+                #{population}
+            )
+    </insert>
+
+</mapper>

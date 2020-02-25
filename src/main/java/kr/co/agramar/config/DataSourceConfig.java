@@ -1,7 +1,6 @@
 package kr.co.agramar.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,7 +16,6 @@ import javax.sql.DataSource;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Slf4j
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "kr.co.agramar.repository")

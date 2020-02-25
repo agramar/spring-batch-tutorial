@@ -1,11 +1,7 @@
 sever:
-  port: 8080
+  port: 98080
   tomcat:
       additional-tld-skip-patterns: '*.jar'
-spring:
-  output:
-    ansi:
-      enabled: always
   jpa:
     hibernate:
       ddl-auto: none
@@ -30,6 +26,8 @@ jasypt:
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
 mybatis:
   type-aliases-package: kr.co.agramar.model
+  lazy-initialization: true
+  mapper-locations: classpath:kr/co/agramar/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
@@ -38,6 +36,9 @@ mybatis:
 spring:
   profiles:
     active: local
+  output:
+    ansi:
+      enabled: always
   datasource:
     master:
       jdbc-url: ENC(6SeDQl25tkd85e14+iuf+mVhSJ0NtALxVavcqjuX2NgsFE4pu21gjF5rglZlhJgT1KfnbSuYJM0V3n84/FOohceJzgJ5mtIOa0ph0z9CfZLFz6A8LuMZGQ==)

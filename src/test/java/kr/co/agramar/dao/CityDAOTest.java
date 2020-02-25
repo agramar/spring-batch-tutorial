@@ -1,9 +1,8 @@
-package kr.co.agramar.mapper;
+package kr.co.agramar.dao;
 
 import com.google.gson.Gson;
 import kr.co.agramar.model.City;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,20 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest({"spring.profiles.active=local", "jasypt.encryptor.password=song"})
 @Transactional
-public class CityMapperTest {
+public class CityDAOTest {
 
     @Autowired
-    private CityMapper cityMapper;
+    private CityDAO cityDAO;
 
     @Autowired
     private Gson gson;
+
+    @Test
+    @Transactional(readOnly = true)
+    public void test_slave() {
+        List<City> cityList = cityDAO.findAll();
+        log.info("cityList : {}", cityList);
+    }
 
     @Test
     @Transactional
@@ -36,18 +42,7 @@ public class CityMapperTest {
                 .population(95472L)
                 .build();
 
-        cityMapper.save(mujin);
-
-        Assert.assertNotNull(mujin.getId());
-
-        log.info("mujin : {}", mujin.toJsonString());
-    }
-
-    @Test
-    @Transactional(readOnly = true)
-    public void test_slave() {
-        List<City> cityList = cityMapper.findAll();
-        log.info("cityList : {}", gson.toJson(cityList));
+        cityDAO.save(mujin);
     }
 
     @Test(expected = TransientDataAccessResourceException.class)
@@ -60,6 +55,6 @@ public class CityMapperTest {
                 .population(95472L)
                 .build();
 
-        cityMapper.save(mujin);
+        cityDAO.save(mujin);
     }
 }

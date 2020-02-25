@@ -1,17 +1,18 @@
 package kr.co.agramar.model;
 
+import com.google.gson.GsonBuilder;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "city", catalog = "world")
 @Getter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
-@EqualsAndHashCode
+@Entity
+@Table(name = "city", catalog = "world")
 public class City {
 
     @Id
@@ -30,5 +31,9 @@ public class City {
 
     @Column(name = "Population")
     private Long population;
+
+    public String toJsonString() {
+        return new GsonBuilder().create().toJson(this);
+    }
 }
 
