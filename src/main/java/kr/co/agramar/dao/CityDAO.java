@@ -27,7 +27,7 @@ public class CityDAO {
     }
 
     void save(City city) {
-        String sql = "        INSERT INTO\n" +
+        String sql = "INSERT INTO\n" +
                 "            world.city (\n" +
                 "                Name,\n" +
                 "                CountryCode,\n" +

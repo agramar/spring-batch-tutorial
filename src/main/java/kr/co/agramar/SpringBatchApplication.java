@@ -15,7 +15,6 @@ import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 @Slf4j
-@EnableScheduling
 @EnableBatchProcessing
 @EnableEncryptableProperties
 @EnableConfigurationProperties

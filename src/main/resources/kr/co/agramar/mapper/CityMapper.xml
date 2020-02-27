@@ -9,8 +9,8 @@
         FROM
             world.city
     </select>
-    
-    <insert id="save" parameterType="City" useGeneratedKeys="true"  keyProperty="id">
+
+    <insert id="save" parameterType="City" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO
             world.city (
                 Name,

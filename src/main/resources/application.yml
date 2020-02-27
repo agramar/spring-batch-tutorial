@@ -32,6 +32,12 @@ mybatis:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
     default-statement-timeout: 30
+spring:
+  quartz:
+    job-store-type: jdbc
+    initialize-schema: true
+    properties:
+      org.quartz.threadPool.threadCount: 5
 ---
 spring:
   profiles:

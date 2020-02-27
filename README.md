@@ -58,3 +58,4 @@ version=3 job.name=stepNextConditionalJob requestDate=20200201
 ## Reference
 - https://github.com/jojoldu/spring-batch-in-action
 - https://ahndy84.tistory.com/24?category=339592
+- https://blog.kingbbode.com/posts/spring-batch-quartz

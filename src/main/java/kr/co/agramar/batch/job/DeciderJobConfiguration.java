@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Random;
 
 @Slf4j
-@Configuration
 @RequiredArgsConstructor
+@Configuration
 public class DeciderJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
