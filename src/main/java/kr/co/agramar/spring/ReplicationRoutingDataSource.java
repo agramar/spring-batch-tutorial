@@ -1,4 +1,4 @@
-package kr.co.agramar.config;
+package kr.co.agramar.spring;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;

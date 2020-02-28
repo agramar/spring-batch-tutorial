@@ -3,13 +3,14 @@ sever:
   tomcat:
       additional-tld-skip-patterns: '*.jar'
   jpa:
+    open-in-view: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       generate-ddl: false
-    show-sql: true
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
         enable_lazy_load_no_trans: true
@@ -17,7 +18,6 @@ sever:
         dialect: org.hibernate.dialect.MySQL57Dialect
         hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
         default_batch_fetch_size: ${chunkSize:1000}
-    open-in-view: false
   main:
     allow-bean-definition-overriding: true
 jasypt:
@@ -30,14 +30,26 @@ mybatis:
   mapper-locations: classpath:kr/co/agramar/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
-    default-fetch-size: 100
+    default-fetch-size: 1000
     default-statement-timeout: 30
 spring:
   quartz:
     job-store-type: jdbc
-    initialize-schema: true
+    jdbc.initialize-schema: NEVER
     properties:
-      org.quartz.threadPool.threadCount: 5
+      org.quartz.scheduler.instanceName: quartz-scheduler-app
+      org.quartz.scheduler.instanceId: AUTO
+      org.quartz.scheduler.instanceIdGenerator.class: kr.co.agramar.scheduler.CustomQuartzInstanceIdGenerator
+      org.quartz.scheduler.skipUpdateCheck: true
+      org.quartz.scheduler.jobFactory.class: org.quartz.simpl.SimpleJobFactory
+      org.quartz.threadPool.threadCount: 20
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      org.quartz.jobStore.useProperties: true
+      org.quartz.jobStore.tablePrefix: qrtz_
+      org.quartz.jobStore.isClustered: true
+      org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
+      org.quartz.plugin.shutdownHook.cleanShutdown: TRUE
 ---
 spring:
   profiles:
