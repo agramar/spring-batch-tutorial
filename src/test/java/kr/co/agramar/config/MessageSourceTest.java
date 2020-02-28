@@ -1,7 +1,5 @@
 package kr.co.agramar.config;
 
-import kr.co.agramar.model.City;
-import kr.co.agramar.repository.CityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,14 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.MessageSource;
-import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 @Slf4j
 @RunWith(SpringRunner.class)

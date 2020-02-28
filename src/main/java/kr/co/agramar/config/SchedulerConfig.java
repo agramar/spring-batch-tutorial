@@ -2,7 +2,6 @@ package kr.co.agramar.config;
 
 import kr.co.agramar.scheduler.SchedulerJobFactory;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
