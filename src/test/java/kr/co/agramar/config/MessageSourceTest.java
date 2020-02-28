@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.MessageSource;
 import org.springframework.orm.jpa.JpaSystemException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +20,8 @@ import java.util.Optional;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest({"spring.profiles.active=local", "jasypt.encryptor.password=song"})
-@Transactional
+@ActiveProfiles("local")
+@SpringBootTest("jasypt.encryptor.password=song")
 public class MessageSourceTest {
 
     @Autowired

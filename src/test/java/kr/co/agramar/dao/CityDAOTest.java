@@ -8,15 +8,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.TransientDataAccessResourceException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Slf4j
+@Transactional(readOnly = true)
 @RunWith(SpringRunner.class)
-@SpringBootTest({"spring.profiles.active=local", "jasypt.encryptor.password=song"})
-@Transactional
+@ActiveProfiles("local")
+@SpringBootTest("jasypt.encryptor.password=song")
 public class CityDAOTest {
 
     @Autowired
@@ -26,7 +28,6 @@ public class CityDAOTest {
     private Gson gson;
 
     @Test
-    @Transactional(readOnly = true)
     public void test_slave() {
         List<City> cityList = cityDAO.findAll();
         log.info("cityList : {}", cityList);
@@ -46,7 +47,6 @@ public class CityDAOTest {
     }
 
     @Test(expected = TransientDataAccessResourceException.class)
-    @Transactional(readOnly = true)
     public void test_master_exception() {
         City mujin = City.builder()
                 .countryCode("KOR")

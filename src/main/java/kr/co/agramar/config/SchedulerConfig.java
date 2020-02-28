@@ -1,6 +1,7 @@
 package kr.co.agramar.config;
 
 import kr.co.agramar.scheduler.SchedulerJobFactory;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.context.ApplicationContext;
@@ -12,15 +13,11 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@AllArgsConstructor
 public class SchedulerConfig {
 
-    @Autowired
     private DataSource dataSource;
-
-    @Autowired
     private ApplicationContext applicationContext;
-
-    @Autowired
     private QuartzProperties quartzProperties;
 
     @Bean

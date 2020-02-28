@@ -7,7 +7,6 @@
 - Replication datasource
 - MyBatis
 - JPA
-- 
 
 ## 0. Arguments
 ### VM Arguments
@@ -59,3 +58,4 @@ version=3 job.name=stepNextConditionalJob requestDate=20200201
 - https://github.com/jojoldu/spring-batch-in-action
 - https://ahndy84.tistory.com/24?category=339592
 - https://blog.kingbbode.com/posts/spring-batch-quartz
+- https://medium.com/@ChamithKodikara/spring-boot-2-quartz-2-scheduler-integration-a8eaaf850805

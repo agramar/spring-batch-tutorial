@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.jpa.JpaSystemException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,16 +15,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
+@Transactional(readOnly = true)
 @RunWith(SpringRunner.class)
-@SpringBootTest({"spring.profiles.active=local", "jasypt.encryptor.password=song"})
-@Transactional
+@ActiveProfiles("local")
+@SpringBootTest("jasypt.encryptor.password=song")
 public class CityRepositoryTest {
 
     @Autowired
     private CityRepository cityRepository;
 
     @Test
-    @Transactional(readOnly = true)
     public void test_slave() {
         List<City> cityList = cityRepository.findAll();
         log.info("cityList : {}", cityList);
@@ -41,7 +42,6 @@ public class CityRepositoryTest {
     }
 
     @Test(expected = JpaSystemException.class)
-    @Transactional(readOnly = true)
     public void test_master_exception() {
         cityRepository.save(City.builder()
                 .countryCode("KOR")
@@ -52,6 +52,7 @@ public class CityRepositoryTest {
     }
 
     @Test
+    @Transactional
     public void test_repository() {
         City city = City.builder()
                 .countryCode("KOR")

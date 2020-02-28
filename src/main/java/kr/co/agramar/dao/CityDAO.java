@@ -1,6 +1,8 @@
 package kr.co.agramar.dao;
 
 import kr.co.agramar.model.City;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class CityDAO {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     List<City> findAll() {

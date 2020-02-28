@@ -2,6 +2,24 @@ sever:
   port: 98080
   tomcat:
       additional-tld-skip-patterns: '*.jar'
+spring:
+  quartz:
+    job-store-type: jdbc
+    jdbc.initialize-schema: NEVER
+    properties:
+      org.quartz.scheduler.instanceName: quartz-scheduler-app
+      org.quartz.scheduler.instanceId: AUTO
+      org.quartz.scheduler.instanceIdGenerator.class: kr.co.agramar.scheduler.CustomQuartzInstanceIdGenerator
+      org.quartz.scheduler.skipUpdateCheck: true
+      org.quartz.scheduler.jobFactory.class: org.quartz.simpl.SimpleJobFactory
+      org.quartz.threadPool.threadCount: 20
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      org.quartz.jobStore.useProperties: true
+      org.quartz.jobStore.tablePrefix: qrtz_
+      org.quartz.jobStore.isClustered: true
+      org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
+      org.quartz.plugin.shutdownHook.cleanShutdown: TRUE
   jpa:
     open-in-view: false
     show-sql: true
@@ -32,24 +50,6 @@ mybatis:
     map-underscore-to-camel-case: true
     default-fetch-size: 1000
     default-statement-timeout: 30
-spring:
-  quartz:
-    job-store-type: jdbc
-    jdbc.initialize-schema: NEVER
-    properties:
-      org.quartz.scheduler.instanceName: quartz-scheduler-app
-      org.quartz.scheduler.instanceId: AUTO
-      org.quartz.scheduler.instanceIdGenerator.class: kr.co.agramar.scheduler.CustomQuartzInstanceIdGenerator
-      org.quartz.scheduler.skipUpdateCheck: true
-      org.quartz.scheduler.jobFactory.class: org.quartz.simpl.SimpleJobFactory
-      org.quartz.threadPool.threadCount: 20
-      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
-      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-      org.quartz.jobStore.useProperties: true
-      org.quartz.jobStore.tablePrefix: qrtz_
-      org.quartz.jobStore.isClustered: true
-      org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
-      org.quartz.plugin.shutdownHook.cleanShutdown: TRUE
 ---
 spring:
   profiles:
@@ -86,12 +86,3 @@ logging:
   level:
     org.springframework.batch: DEBUG
     com.zaxxer: DEBUG
----
-spring:
-  profiles: local-h2
-  datasource:
-    hikari:
-      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
