@@ -1,4 +1,4 @@
-package kr.co.agramar.model;
+package kr.co.agramar.entity;
 
 import com.google.gson.GsonBuilder;
 import lombok.*;

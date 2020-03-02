@@ -1,6 +1,6 @@
 package kr.co.agramar.mapper;
 
-import kr.co.agramar.model.City;
+import kr.co.agramar.entity.City;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import kr.co.agramar.spring.ReplicationRoutingDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "kr.co.agramar.repository")
+@EntityScan(basePackages = "kr.co.agramar.entity")
 @MapperScan(basePackages = "kr.co.agramar.mapper")
 public class DataSourceConfig {
 

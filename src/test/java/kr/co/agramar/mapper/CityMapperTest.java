@@ -1,7 +1,7 @@
 package kr.co.agramar.mapper;
 
 import com.google.gson.Gson;
-import kr.co.agramar.model.City;
+import kr.co.agramar.entity.City;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("local")
 @SpringBootTest("jasypt.encryptor.password=song")
-class CityMapperTest {
+public class CityMapperTest {
 
     @Autowired
     private CityMapper cityMapper;

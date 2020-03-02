@@ -1,6 +1,6 @@
 package kr.co.agramar.dao;
 
-import kr.co.agramar.model.City;
+import kr.co.agramar.entity.City;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

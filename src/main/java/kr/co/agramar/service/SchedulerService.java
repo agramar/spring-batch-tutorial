@@ -3,6 +3,7 @@ package kr.co.agramar.service;
 import kr.co.agramar.dto.SchedulerJobInfo;
 import kr.co.agramar.scheduler.JobScheduleCreator;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.context.ApplicationContext;
@@ -18,19 +19,27 @@ import java.util.List;
 @Slf4j
 @Transactional
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SchedulerService {
 
-    private SchedulerFactoryBean schedulerFactoryBean;
-    private ApplicationContext context;
-    private JobScheduleCreator scheduleCreator;
+    private final SchedulerFactoryBean schedulerFactoryBean;
+    private final ApplicationContext context;
+    private final JobScheduleCreator scheduleCreator;
 
     private final List<SchedulerJobInfo> JOB_INFO_LIST = Arrays.asList(
+            SchedulerJobInfo.builder()
+                    .jobName("SampleJobLauncherJob")
+                    .jobGroup("jobGroup")
+                    .jobClass("kr.co.agramar.scheduler.job.SampleJobLauncherJob")
+                    .cronExpression("00 05 19 * * ?")
+                    .cronJob(true)
+                    .description("Spring Batch Job Launcher Job Sample")
+                    .build(),
             SchedulerJobInfo.builder()
                     .jobName("SampleSimpleJob")
                     .jobGroup("SimpleJobGroup")
                     .jobClass("kr.co.agramar.scheduler.job.SampleSimpleJob")
-                    .repeatInterval(10000L)
+                    .repeatInterval(1000000L)
                     .cronJob(false)
                     .description("Simple Job Sample")
                     .build(),
@@ -38,7 +47,7 @@ public class SchedulerService {
                     .jobName("SampleCronJob")
                     .jobGroup("CronJobGroup")
                     .jobClass("kr.co.agramar.scheduler.job.SampleCronJob")
-                    .cronExpression("0/5 * * * * ?")
+                    .cronExpression("0/30 * * * * ?")
                     .cronJob(true)
                     .description("Cron Job Sample")
                     .build());

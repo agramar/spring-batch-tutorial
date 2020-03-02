@@ -2,6 +2,7 @@ package kr.co.agramar.scheduler;
 
 import kr.co.agramar.service.SchedulerService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SchedulerStartUpHandler implements ApplicationRunner {
 
-    private SchedulerService schedulerService;
+    private final SchedulerService schedulerService;
 
     @Override
     public void run(ApplicationArguments args) {
