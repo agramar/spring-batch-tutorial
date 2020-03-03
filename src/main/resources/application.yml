@@ -63,7 +63,7 @@ spring:
     active: local
   datasource:
     master:
-      jdbc-url: ENC(6SeDQl25tkd85e14+iuf+mVhSJ0NtALxVavcqjuX2NgsFE4pu21gjF5rglZlhJgT1KfnbSuYJM0V3n84/FOohceJzgJ5mtIOa0ph0z9CfZLFz6A8LuMZGQ==)
+      jdbc-url: ENC(FKZEev2lhZxSNBut8DDbcBw6p/sI9GonpjJxyJVa8D0pL7EGl27NLRoaGpwKBfWEGhfCAfZHkKs9KV1DPufoCdaZaN+/LT74Yxkw2yJ8z8AdHNptEgqzl530jad7ho/J)
       username: ENC(MaKsjiW/3TbTFvljwvvNP139YzDepOoh)
       password: ENC(xTCMmaR+pCnwe24xFv/LhfQBWdfU9R92)
       poolName: HikariPool-Master
@@ -75,7 +75,7 @@ spring:
       connection-timeout: 20000
       max-lifetime: 2000000
     slave:
-      jdbc-url: ENC(aomN5aZJH+8kegUUEUgqDxTSI5e4eUhbCYpmUJY3lDxOGieQgvJtjpukH/xWgk9nQYhF0jBPi1iddx6rbjR8K/XYju3g+2p76INcGsyCRqNySVwP+pdvlA==)
+      jdbc-url: ENC(b4In/zWEkvV4/F/vCXfTqHDbwVU8i8DJ2xfwnv9MjqUG0ETWqqNVRQmDmKgvMNt0lf5CWH9a6lA1OuyTzPQTGNA7VaAX0OiePLys0b07O0ew0QYZ23RKq1FMoYe1IibE)
       username: ENC(Z4NFn1jYF1QpstbsQt90/X6eeWPsJs96)
       password: ENC(pWWCGpYxbQkVmEgjWllZEzt/4UlUdpUX)
       poolName: HikariPool-Slave
